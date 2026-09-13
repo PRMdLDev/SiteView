@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#080b12",
   "theme_color": "#080b12",
-  "description": "Visualizador local de projetos web.",
+  "description": "Visualizador local de projetos web, criado para facilitar testes e visualização durante o desenvolvimento, sem a necessidade de publicar o site.",
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,5 +20,5 @@
       "purpose": "any maskable"
     }
   ],
-  "version": "2.1.1"
+  "version": "2.10.0"
 }

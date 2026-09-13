@@ -8,35 +8,16 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="favicon-64.png">
 <title>SiteView — Visualizador de Projetos</title>
-<style>
-:root{--bg:#080b12;--panel:#101522;--panel2:#0d111b;--line:#273044;--muted:#8f98ab;--text:#f5f7fb;--accent:#735cff;--accent2:#35c7ff;--danger:#ff667a;--ok:#48d597}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-body{overflow-x:hidden}.app{min-height:100dvh}.top{height:68px;border-bottom:1px solid var(--line);background:#0d111b;display:flex;align-items:center;justify-content:space-between;padding:0 max(14px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left));position:sticky;top:0;z-index:20}
-.brand{display:flex;align-items:center;gap:10px;font-weight:850}.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;overflow:hidden;background:#07102a;box-shadow:0 8px 25px #0005;border:1px solid #2b5fff}.mark img{width:100%;height:100%;object-fit:cover;display:block}.profile-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;border:1px solid #34415e;background:#07102a;box-shadow:0 6px 18px #0004;display:grid;place-items:center}.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}.profile-avatar[title]{cursor:default}.brand small{display:block;color:#788299;font-size:10px;font-weight:600;margin-top:2px}
-.top-actions{display:flex;gap:7px;align-items:center}.icon-btn,.btn{font:inherit;border-radius:10px;cursor:pointer}.icon-btn{border:1px solid #2b354b;background:#111827;color:#fff;padding:9px 11px;font-weight:750}.icon-btn:hover{background:#171d2b}.icon-btn:disabled,.btn:disabled{opacity:.5;cursor:not-allowed}
-main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro h1{margin:0;font-size:clamp(25px,4vw,34px);letter-spacing:-.7px}.intro p{color:var(--muted);margin:8px 0 24px}
-.layout{display:grid;grid-template-columns:minmax(290px,350px) minmax(0,1fr);gap:20px;align-items:start}.panel,.project-card,.empty,.info-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);box-shadow:0 12px 40px #0002}.panel{padding:16px}.drop{border:1px dashed #4a5570;border-radius:15px;padding:25px 15px;text-align:center;transition:.2s}.drop.on{border-color:#9a8dff;background:#171632;transform:scale(1.01)}.drop-icon{font-size:36px;margin-bottom:7px}.drop b{display:block}.drop small{display:block;color:var(--muted);line-height:1.55;margin:7px auto 15px;max-width:280px}
-.actions-stack{display:grid;gap:9px}.btn{border:1px solid transparent;padding:11px 14px;font-weight:800}.primary{background:linear-gradient(135deg,var(--accent),#8c7cff);color:#fff}.secondary{background:#171d2b;color:#fff;border-color:#2b354b}.link-btn{background:none;border:0;color:#a9a1ff;font-weight:750;cursor:pointer;padding:4px}
-.help{margin-top:14px;padding:13px;border-radius:13px;background:#0c1019;color:var(--muted);font-size:12px;line-height:1.55}.help strong{color:#fff}.capabilities{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.cap{padding:10px;border:1px solid #20293b;border-radius:12px;background:#0d121d;color:#aab3c5;font-size:11px}.cap b{display:block;color:#fff;margin-bottom:3px;font-size:12px}
-.project-card{overflow:hidden}.project-thumb{height:210px;background:#0a0d14;display:grid;place-items:center;position:relative}.mini-browser{width:min(82%,650px);height:70%;background:#e8edf5;border-radius:10px;overflow:hidden;box-shadow:0 20px 40px #0006}.mini-bar{height:22px;background:#222a39;padding:7px;display:flex;gap:5px}.dot{width:7px;height:7px;border-radius:50%;background:#8b94a7}.mini-screen{height:calc(100% - 22px);background:linear-gradient(135deg,#e8edf5,#cbd4e2)}.project-info{padding:18px}.project-info h2{font-size:18px;margin:0 0 5px}.meta{color:var(--muted);font-size:12px;line-height:1.55}.project-actions{display:grid;grid-template-columns:1fr auto;gap:9px;margin-top:15px}.empty{min-height:360px;display:grid;place-items:center;text-align:center;color:var(--muted);padding:25px}.empty strong{display:block;color:#fff;font-size:19px;margin-bottom:7px}
-.file-summary{margin-top:12px;padding:13px;border:1px solid #20293b;border-radius:13px;background:#0c1019;font-size:12px;color:var(--muted)}.file-summary b{color:#fff}.file-summary .row{display:flex;justify-content:space-between;gap:15px;margin:5px 0}.entry-select{margin-top:12px;padding:12px;border:1px solid #20293b;border-radius:13px;background:#0c1019}.entry-select label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}.entry-select select{width:100%;background:#111827;color:#fff;border:1px solid #2b354b;border-radius:9px;padding:9px}
-.progress{display:none;margin-top:14px;border:1px solid #283249;border-radius:14px;background:#0c1019;padding:13px}.progress.show{display:block}.progress-top{display:flex;justify-content:space-between;font-size:12px;font-weight:800}.progress-sub{font-size:11px;color:var(--muted);margin:6px 0 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track{height:7px;border-radius:99px;background:#20283a;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}.progress.done .fill{background:var(--ok)}
-.system-loading{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:rgba(5,8,15,.88);backdrop-filter:blur(10px);padding:20px}.system-loading.show{display:grid}.system-loading-card{width:min(430px,100%);background:#101522;border:1px solid #303a51;border-radius:20px;padding:26px;box-shadow:0 30px 90px #0009;text-align:center}.system-logo{width:72px;height:72px;border-radius:20px;overflow:hidden;margin:0 auto 17px;border:1px solid #3a5fff;box-shadow:0 12px 35px #0007}.system-logo img{width:100%;height:100%;object-fit:cover;display:block}.system-spinner{width:38px;height:38px;border:3px solid #30384b;border-top-color:#35c7ff;border-right-color:#735cff;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 15px}.system-loading h2{margin:0;font-size:18px}.system-loading p{margin:7px 0 15px;color:var(--muted);font-size:12px}.system-progress{height:7px;border-radius:99px;background:#20283a;overflow:hidden}.system-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}.system-stage{margin-top:9px;color:#9da7bb;font-size:11px;min-height:16px}.toast{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:100;background:#111827;border:1px solid #303a51;padding:11px 14px;border-radius:11px;font-size:12px;display:none;max-width:min(420px,calc(100vw - 32px));box-shadow:0 15px 40px #0006}
-.modal{position:fixed;inset:0;background:#0009;backdrop-filter:blur(5px);z-index:80;display:none;place-items:center;padding:18px}.modal.show{display:grid}.modal-card{width:min(650px,100%);max-height:min(85dvh,720px);overflow:auto;background:#101522;border:1px solid #303a51;border-radius:18px;box-shadow:0 30px 80px #0009}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}.modal-head h2{font-size:17px;margin:0}.close{background:#171d2b;color:#fff;border:1px solid #2b354b;width:34px;height:34px;border-radius:9px;font-size:20px;cursor:pointer}.modal-body{padding:18px}.modal-body p,.modal-body li{color:#aab3c5;font-size:13px;line-height:1.6}.modal-body code{background:#0a0e16;padding:2px 5px;border-radius:5px}
-.preview{position:fixed;inset:0;background:#070a10;z-index:60;display:none;grid-template-rows:58px 1fr}.preview.show{display:grid}.preview-head{display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);background:#0d111b;min-width:0}.preview-title{display:flex;align-items:center;gap:9px;min-width:0}.preview-title span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.preview-actions{display:flex;gap:6px}.device-btn{padding:8px 10px}.device-btn.active{border-color:#796aff;background:#171632}.preview-body{position:relative;min-height:0;overflow:hidden;background:#171b25}.preview-frame{width:100%;height:100%;border:0;background:#fff;display:block}.preview-loading,.preview-error{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:#080b12}.preview-loading.hide,.preview-error.hide{display:none}.loading-box{text-align:center}.spinner{width:34px;height:34px;border:3px solid #30384b;border-top-color:#8a7cff;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}@keyframes spin{to{transform:rotate(360deg)}}.loading-title{font-weight:850}.loading-sub{color:var(--muted);font-size:12px;margin-top:5px}.error-box{width:min(650px,calc(100% - 28px));background:#101522;border:1px solid #303a51;border-radius:17px;padding:22px}.error-box h2{font-size:20px;margin:0 0 8px}.error-box p{color:#aab3c5;font-size:13px;line-height:1.55}.diagnostic{display:grid;gap:8px;margin:14px 0}.diag{background:#0c1019;border:1px solid #20293b;border-radius:10px;padding:10px;color:#aab3c5;font-size:12px}.diag b{color:#fff}.error-actions{display:flex;gap:8px;justify-content:flex-end}
-.install-note{font-size:11px;color:#79849a;margin-top:9px;line-height:1.45}.install-btn{border-color:#36527c;background:#101a2b}.install-btn.ready{border-color:#5e75ff;background:#171632}.install-btn[hidden]{display:none}.install-modal-card{width:min(620px,100%)}.install-hero{display:flex;align-items:center;gap:14px;padding:4px 0 15px}.install-modal-icon{width:64px;height:64px;flex:0 0 64px;border-radius:17px;overflow:hidden;border:1px solid #355fff;background:#07102a;box-shadow:0 10px 30px #0006}.install-modal-icon img{width:100%;height:100%;object-fit:cover;display:block}.install-hero strong{font-size:16px;color:#fff}.install-hero p{margin:5px 0 0!important}.install-points{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 14px}.install-points>div{border:1px solid #20293b;border-radius:12px;background:#0c1019;padding:11px}.install-points b{display:block;color:#fff;font-size:12px;margin-bottom:4px}.install-points span{display:block;color:#8f98ab;font-size:11px;line-height:1.45}.install-status{border:1px solid #283249;border-radius:13px;background:#0d121d;padding:12px}.install-status strong{display:block;color:#fff;font-size:12px}.install-status span{display:block;color:#8f98ab;font-size:11px;line-height:1.45;margin-top:4px}.install-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px}.install-actions .btn{min-height:42px}@media(max-width:600px){.install-points{grid-template-columns:1fr}.install-hero{align-items:flex-start}.install-actions{grid-template-columns:1fr}.install-actions .secondary{order:2}}
-@media(max-width:820px){main{width:min(100% - 24px,700px);padding-top:24px}.layout{grid-template-columns:1fr}.project-thumb{height:180px}.top{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}}
-@media(max-width:560px){.top{height:60px}.mark{width:34px;height:34px}.brand small{display:none}.top-actions{gap:5px}.top-actions .label{display:none}.icon-btn{padding:9px}.intro p{font-size:13px}.panel{padding:12px}.drop{padding:22px 12px}.capabilities{grid-template-columns:1fr}.project-actions{grid-template-columns:1fr}.project-thumb{height:155px}.preview{grid-template-rows:auto 1fr}.preview-head{min-height:58px;padding:7px 8px;gap:6px}.preview-actions{flex-wrap:wrap;justify-content:flex-end}.preview-actions .label{display:none}.device-btn{padding:8px}.preview-title{font-size:13px;max-width:44vw}.error-actions{flex-direction:column}.error-actions .btn{width:100%}.system-loading-card{padding:22px 17px}.system-logo{width:64px;height:64px}.system-loading h2{font-size:17px}}
-@media(orientation:landscape) and (max-width:820px){.preview-head{min-height:52px}.preview{grid-template-rows:52px 1fr}}
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 <div class="app">
 <header class="top">
   <div class="brand"><div class="mark"><img src="icon-192.png" alt="SiteView"></div><div>SiteView<small>Visualizador de projetos</small></div></div>
   <div class="top-actions">
-    <button class="icon-btn install-btn" id="installBtn" type="button">⇩ <span class="label">Instalar</span></button>
-    <button class="icon-btn" id="aboutBtn" type="button">ⓘ <span class="label">Sobre</span></button>
+    <button class="icon-btn install-btn" id="installBtn" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg><span class="label">Instalar</span></button>
+    <button class="icon-btn" id="aboutBtn" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v6"></path><path d="M12 7h.01"></path></svg><span class="label">Sobre</span></button>
     <button class="icon-btn" id="clearTop" type="button" disabled>Limpar</button>
   </div>
 </header>
@@ -48,7 +29,7 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
 <section class="layout">
   <aside class="panel">
     <div class="drop" id="drop">
-      <div class="drop-icon">📁</div>
+      <div class="drop-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" style="width:38px;height:38px;stroke-width:1.5"><path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h4l2 2h6a2.5 2.5 0 0 1 2.5 2.5v7A2.5 2.5 0 0 1 18 19H6a2.5 2.5 0 0 1-2.5-2.5z"></path><path d="M3.5 10h17"></path></svg></div>
       <b>Carregar projeto</b>
       <small>Escolha uma pasta, arraste arquivos para cá ou importe um arquivo ZIP/HTML.</small>
       <div class="actions-stack">
@@ -62,10 +43,10 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
     <div class="help"><strong>Compatibilidade local</strong><br>HTML, CSS, JavaScript, módulos, imagens, fontes, áudio, vídeo, JSON, páginas internas, caminhos relativos, <code>srcset</code> e CSS com <code>url()</code> são preparados para a visualização.</div>
 
     <div class="capabilities">
-      <div class="cap"><b>📱 Responsivo</b>Interface adaptada ao celular.</div>
-      <div class="cap"><b>🖥️ PC</b>Seleção de pasta nativa quando disponível.</div>
-      <div class="cap"><b>🗜️ ZIP</b>Importação de projetos compactados.</div>
-      <div class="cap"><b>🔒 Local</b>Arquivos processados no navegador.</div>
+      <div class="cap"><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M10 18h4"></path></svg> Responsivo</b>Interface adaptada ao celular.</div>
+      <div class="cap"><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg> PC</b>Seleção de pasta nativa quando disponível.</div>
+      <div class="cap"><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v18H7z"></path><path d="M9 3v4h6V3"></path><path d="M10 11h4"></path><path d="M10 14h4"></path></svg> ZIP</b>Importação de projetos compactados.</div>
+      <div class="cap"><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg> Local</b>Arquivos processados no navegador.</div>
     </div>
 
     <div class="progress" id="progress">
@@ -80,20 +61,25 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
   </section>
 </section>
 </main>
+<footer class="main-footer" id="mainFooter">
+  <strong>SiteView 2.10</strong>
+  <span>Desenvolvido por <b>PRMdL</b></span>
+  <span>© 2026 PRMdL — Todos os direitos reservados.</span>
+</footer>
 </div>
 
 <div class="modal" id="installModal" aria-hidden="true">
  <div class="modal-card install-modal-card" role="dialog" aria-modal="true" aria-labelledby="installTitle">
-  <div class="modal-head"><h2 id="installTitle">Instalar SiteView</h2><button class="close" id="closeInstall" type="button" aria-label="Fechar">×</button></div>
+  <div class="modal-head"><h2 id="installTitle">Instalar SiteView</h2><button class="close" id="closeInstall" type="button" aria-label="Fechar"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10"></path><path d="m17 7-10 10"></path></svg></button></div>
   <div class="modal-body">
    <div class="install-hero">
     <div class="install-modal-icon"><img src="icon-512.png" alt="SiteView"></div>
     <div><strong>Tenha o SiteView como aplicativo</strong><p>Instale o SiteView para abrir o visualizador em uma janela própria e acessar o sistema com mais praticidade.</p></div>
    </div>
    <div class="install-points">
-    <div><b>⚡ Acesso rápido</b><span>Abra o SiteView como um aplicativo.</span></div>
-    <div><b>🖥️ Experiência dedicada</b><span>Use uma janela própria, sem depender de uma aba comum.</span></div>
-    <div><b>📱 Computador e celular</b><span>Quando compatível, a instalação também pode ser adicionada à tela inicial.</span></div>
+    <div><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6z"></path></svg> Acesso rápido</b><span>Abra o SiteView como um aplicativo.</span></div>
+    <div><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg> Experiência dedicada</b><span>Use uma janela própria, sem depender de uma aba comum.</span></div>
+    <div><b><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M10 18h4"></path></svg> Computador e celular</b><span>Quando compatível, a instalação também pode ser adicionada à tela inicial.</span></div>
    </div>
    <div class="install-status" id="installStatus"><strong>Pronto para instalar</strong><span>Se o navegador disponibilizar a instalação, o botão abaixo iniciará o processo.</span></div>
    <div class="install-actions">
@@ -107,9 +93,9 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
 
 <div class="modal" id="aboutModal" aria-hidden="true">
  <div class="modal-card" role="dialog" aria-modal="true">
-  <div class="modal-head"><h2>Sobre o SiteView</h2><button class="close" id="closeAbout" type="button">×</button></div>
+  <div class="modal-head"><h2>Sobre o SiteView</h2><button class="close" id="closeAbout" type="button" aria-label="Fechar"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10"></path><path d="m17 7-10 10"></path></svg></button></div>
   <div class="modal-body">
-   <p><strong>SiteView 2.0</strong> é um visualizador local para projetos web. O projeto é carregado e processado no navegador, sem envio automático dos arquivos para um servidor.</p>
+   <p><strong>SiteView 2.10</strong> é um visualizador local para projetos web. O projeto é carregado e processado no navegador, sem envio automático dos arquivos para um servidor.</p>
    <ul>
     <li>Suporte a pastas, arquivos individuais e ZIP.</li>
     <li>Detecção de <code>index.html</code> e seleção de outra página quando necessário.</li>
@@ -120,18 +106,42 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
    <p><strong>Importante:</strong> projetos que dependem de PHP, Node.js, APIs próprias, banco de dados, servidor web ou serviços externos não podem ser transformados em backend apenas pelo navegador. Eles precisam do ambiente correspondente.</p>
    <p><strong>Instalação:</strong> quando o navegador permitir, use o botão <code>Instalar</code> no topo para adicionar o SiteView como aplicativo. Em celulares, o navegador pode oferecer a opção “Adicionar à tela inicial”.</p>
    <p>Desenvolvido para testes e visualização local de projetos web.</p>
+
+   <div class="about-section">
+    <h3>Sobre o desenvolvedor</h3>
+    <p>O SiteView foi desenvolvido por <strong>PRMdL</strong>, com o objetivo de criar uma ferramenta prática para facilitar o desenvolvimento, os testes e a visualização de projetos web.</p>
+   </div>
+
+   <div class="about-section">
+    <h3>Direitos e distribuição</h3>
+    <p><strong>© 2026 PRMdL. Todos os direitos reservados.</strong></p>
+    <p>O código-fonte, a estrutura, a interface, a identidade visual e os demais elementos originais do SiteView são de propriedade de seu desenvolvedor. A cópia, reprodução, distribuição, redistribuição, publicação ou comercialização do projeto, total ou parcialmente, não é permitida sem autorização do autor.</p>
+   </div>
+
+   <div class="about-section">
+    <h3>Edição e modificação do código</h3>
+    <p>O código do SiteView é de autoria de <strong>PRMdL</strong>. A edição, alteração, adaptação ou criação de versões derivadas do código não é autorizada para redistribuição ou publicação sem a permissão do autor.</p>
+   </div>
+
+   <div class="about-section about-legal">
+    <h3>Referências legais</h3>
+    <p>Direitos autorais e proteção de programas de computador: <strong>Lei nº 9.610/1998, arts. 7º, 28 e 29</strong>; <strong>Lei nº 9.609/1998, art. 2º</strong>.</p>
+   </div>
+
+   <p class="about-rights"><strong>SiteView 2.10</strong> — desenvolvido por PRMdL · © 2026 PRMdL · Todos os direitos reservados.</p>
   </div>
  </div>
 </div>
 
 <div class="preview" id="preview" aria-hidden="true">
  <div class="preview-head">
-  <div class="preview-title">🌐 <span id="previewTitle">Visualização</span></div>
+  <div class="preview-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg><span id="previewTitle">Visualização</span></div>
   <div class="preview-actions">
-   <button class="icon-btn device-btn active" data-device="desktop" type="button">🖥️ <span class="label">Desktop</span></button>
-   <button class="icon-btn device-btn" data-device="tablet" type="button">▣ <span class="label">Tablet</span></button>
-   <button class="icon-btn device-btn" data-device="mobile" type="button">📱 <span class="label">Celular</span></button>
-   <button class="icon-btn" id="closePreview" type="button">← <span class="label">Voltar</span></button>
+   <button class="icon-btn refresh-btn" id="refreshPreview" type="button" title="Atualizar visualização"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.7-4L4 9"></path><path d="M4 4v5h5"></path><path d="M4 13a8 8 0 0 0 14.7 4L20 15"></path><path d="M20 20v-5h-5"></path></svg><span class="label">Atualizar</span></button>
+   <button class="icon-btn device-btn active" data-device="desktop" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"></rect><path d="M8 20h8"></path><path d="M12 16v4"></path></svg><span class="label">Desktop</span></button>
+   <button class="icon-btn device-btn" data-device="tablet" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M10 18h4"></path></svg><span class="label">Tablet</span></button>
+   <button class="icon-btn device-btn" data-device="mobile" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M10 18h4"></path></svg><span class="label">Celular</span></button>
+   <button class="icon-btn" id="closePreview" type="button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg><span class="label">Voltar</span></button>
   </div>
  </div>
  <div class="preview-body" id="previewBody">
@@ -143,244 +153,7 @@ main{width:min(1400px,calc(100% - 40px));margin:auto;padding:34px 0 60px}.intro 
 
 <div class="toast" id="toast"></div>
 
-<script>
-'use strict';
+<script src="assets/js/app.js" defer></script>
 
-const $=id=>document.getElementById(id);
-const folderInput=$('folderInput'), fileInput=$('fileInput'), drop=$('drop'), area=$('area'), progress=$('progress'), installBtn=$('installBtn');
-let files=new Map(), projectName='Meu projeto', entryPage='', root='', busy=false, generation=0, deferredInstallPrompt=null;
-let previewObjectUrls=[];
-
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const frame=()=>new Promise(r=>requestAnimationFrame(r));
-
-function toast(t){const el=$('toast');el.textContent=t;el.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>el.style.display='none',3000)}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function clean(p){const a=String(p||'').replace(/\\/g,'/').split('/'),o=[];for(const x of a){if(!x||x==='.'){continue}if(x==='..'){o.pop();continue}o.push(x)}return o.join('/')}
-function strip(v){return String(v||'').split(/[?#]/,1)[0]}
-function external(v){return /^(?:https?:|data:|blob:|\/\/|#|mailto:|tel:|javascript:|about:|file:)/i.test(String(v||'').trim())}
-function baseOf(p){const i=p.lastIndexOf('/');return i<0?'':p.slice(0,i+1)}
-function ext(p){return String(p||'').split('.').pop().toLowerCase()}
-function mime(file,path){if(file?.type)return file.type;return ({css:'text/css',js:'text/javascript',mjs:'text/javascript',json:'application/json',html:'text/html',htm:'text/html',svg:'image/svg+xml',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',gif:'image/gif',webp:'image/webp',avif:'image/avif',ico:'image/x-icon',bmp:'image/bmp',mp3:'audio/mpeg',wav:'audio/wav',ogg:'audio/ogg',mp4:'video/mp4',webm:'video/webm',woff:'font/woff',woff2:'font/woff2',ttf:'font/ttf',otf:'font/otf',eot:'application/vnd.ms-fontobject',wasm:'application/wasm'})[ext(path)]||'application/octet-stream'}
-function fileFor(path){path=clean(path);if(files.has(path))return files.get(path);if(root&&path.startsWith(root)&&files.has(path.slice(root.length)))return files.get(path.slice(root.length));const l=path.toLowerCase();for(const [k,f] of files)if(k.toLowerCase()===l)return f;return null}
-function pathFor(file){for(const [p,f] of files)if(f===file)return p;return file?.name||''}
-function resolve(base,ref){if(!ref||external(ref))return null;try{return clean(new URL(strip(ref),'https://siteview.local/'+clean(base)).pathname)}catch{return null}}
-function setProgress(pct,status,file){progress.classList.add('show');$('progressStatus').textContent=status;$('progressPct').textContent=pct+'%';$('progressFill').style.width=pct+'%';$('progressFile').textContent=file||''}
-function hideProgress(){progress.classList.remove('show');$('progressFill').style.width='0%'}
-async function processProgress(list,label='Processando',id=generation){
-  const stages=[[8,'Lendo arquivos...'],[22,'Organizando arquivos...'],[42,'Preparando estrutura...'],[62,'Preparando recursos...'],[80,'Verificando projeto...'],[94,'Finalizando...'],[100,'Concluído']];
-  const perStage=Math.max(420,Math.min(850,5000/Math.max(1,stages.length-1)));
-  for(const [pct,status] of stages){
-    if(id!==generation)throw new Error('cancelado');
-    const idx=Math.min(Math.max(0,list.length-1),Math.floor((pct/100)*Math.max(0,list.length-1)));
-    const f=pct===100?'Todos os arquivos foram processados.':(list[idx]?.webkitRelativePath||list[idx]?.name||'Processando...');
-    setProgress(pct,status,f);
-    await sleep(pct===100?320:perStage);
-    await frame();
-  }
-}
-async function collectDirectory(handle,out,prefix=''){for await(const e of handle.values()){const p=prefix?prefix+'/'+e.name:e.name;if(e.kind==='file'){const f=await e.getFile();try{Object.defineProperty(f,'webkitRelativePath',{value:p,configurable:true})}catch{}out.push(f)}else await collectDirectory(e,out,p)}}
-async function collectEntry(entry,out,prefix=''){if(entry.isFile){await new Promise(res=>entry.file(f=>{try{Object.defineProperty(f,'webkitRelativePath',{value:prefix+f.name,configurable:true})}catch{}out.push(f);res()},res));return}if(entry.isDirectory){const r=entry.createReader();while(true){const batch=await new Promise(res=>r.readEntries(res,()=>res([])));if(!batch.length)break;for(const e of batch)await collectEntry(e,out,prefix+entry.name+'/')}}}
-
-async function unzip(file){
-  const buf=await file.arrayBuffer(), dv=new DataView(buf), bytes=new Uint8Array(buf), sig=0x06054b50;
-  let eocd=-1;for(let i=bytes.length-22;i>=Math.max(0,bytes.length-22-65535);i--){if(dv.getUint32(i,true)===sig){eocd=i;break}}
-  if(eocd<0)throw new Error('ZIP inválido: diretório central não encontrado.');
-  const count=dv.getUint16(eocd+10,true), cdSize=dv.getUint32(eocd+12,true), cdOffset=dv.getUint32(eocd+16,true);
-  if(count===0)return [];
-  const out=[];let pos=cdOffset;
-  for(let n=0;n<count;n++){
-    if(dv.getUint32(pos,true)!==0x02014b50)throw new Error('ZIP inválido: entrada não reconhecida.');
-    const method=dv.getUint16(pos+10,true), csize=dv.getUint32(pos+20,true), usize=dv.getUint32(pos+24,true), nlen=dv.getUint16(pos+28,true), xlen=dv.getUint16(pos+30,true), clen=dv.getUint16(pos+32,true), loff=dv.getUint32(pos+42,true);
-    const nameBytes=bytes.slice(pos+46,pos+46+nlen);const name=new TextDecoder('utf-8').decode(nameBytes).replace(/\\/g,'/');
-    pos+=46+nlen+xlen+clen;if(!name||name.endsWith('/'))continue;
-    if(method!==0&&method!==8)continue;
-    if(usize>80*1024*1024)continue;
-    const lp=loff, localNameLen=dv.getUint16(lp+26,true), localExtraLen=dv.getUint16(lp+28,true), start=lp+30+localNameLen+localExtraLen;
-    const compressed=bytes.slice(start,start+csize);
-    let data=compressed;
-    if(method===8){
-      if(typeof DecompressionStream!=='function')throw new Error('Este navegador não oferece descompactação ZIP nativa.');
-      const ds=new DecompressionStream('deflate-raw');data=new Uint8Array(await new Response(new Blob([compressed]).stream().pipeThrough(ds)).arrayBuffer());
-    }
-    if(usize&&data.byteLength!==usize){} // alguns ZIPs usam tamanhos incompatíveis; o conteúdo ainda pode ser válido.
-    const f=new File([data],name.split('/').pop(),{type:''});try{Object.defineProperty(f,'webkitRelativePath',{value:name,configurable:true})}catch{}out.push(f);
-  }
-  return out;
-}
-
-async function normalizeInput(list){
-  const all=[];for(const f of list){if(ext(f.name)==='zip'){const z=await unzip(f);all.push(...z)}else all.push(f)}
-  return all;
-}
-function unique(list){const s=new Set(),o=[];for(const f of list){if(!f||typeof f.arrayBuffer!=='function')continue;const key=(f.webkitRelativePath||f.name)+'|'+f.size+'|'+f.lastModified;if(s.has(key))continue;s.add(key);o.push(f)}return o}
-
-async function addFiles(list,explicitName){
-  const incoming=unique(list);if(!incoming.length)throw new Error('Nenhum arquivo válido foi encontrado.');
-  files.clear();let raw=[];
-  for(const f of incoming){const p=clean(f.webkitRelativePath||f.name);if(p){files.set(p,f);raw.push(p)}}
-  if(!raw.length)throw new Error('Nenhum arquivo válido foi encontrado.');
-  const first=raw[0].split('/')[0], hasRoot=raw.every(p=>p===first||p.startsWith(first+'/'));
-  if(hasRoot){for(const p of [...raw]){const alias=p.slice(first.length+1);if(alias&&!files.has(alias))files.set(alias,files.get(p))}}
-  root='';
-  const htmls=[...files.keys()].filter(p=>/\.(?:html?|xhtml)$/i.test(p));
-  entryPage=htmls.find(p=>p.toLowerCase()==='index.html')||htmls.find(p=>p.toLowerCase().endsWith('/index.html'))||htmls[0]||'';
-  if(!entryPage)throw new Error('O projeto não possui uma página HTML. Para o SiteView, é necessário um arquivo HTML de entrada.');
-  root=entryPage.includes('/')?entryPage.slice(0,entryPage.lastIndexOf('/')+1):'';
-  projectName=explicitName||first||'Meu projeto';
-  renderProject(htmls);
-}
-
-function renderProject(htmls){
-  $('clearTop').disabled=false;
-  area.innerHTML=`<article class="project-card"><div class="project-thumb"><div class="mini-browser"><div class="mini-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><div class="mini-screen"></div></div></div><div class="project-info"><h2>${esc(projectName)}</h2><div class="meta"><b>${countFiles()}</b> arquivo(s) • entrada: ${esc(entryPage)}</div><div class="entry-select"><label for="entrySelect">Página de entrada</label><select id="entrySelect">${htmls.map(p=>`<option value="${esc(p)}" ${p===entryPage?'selected':''}>${esc(p)}</option>`).join('')}</select></div><div class="file-summary"><div class="row"><span>Arquivos</span><b>${countFiles()}</b></div><div class="row"><span>HTML</span><b>${htmls.length}</b></div><div class="row"><span>Recursos</span><b>${Math.max(0,countFiles()-htmls.length)}</b></div></div><div class="project-actions"><button class="btn primary" id="view" type="button">Visualizar site</button><button class="btn secondary" id="remove" type="button">Excluir</button></div></div></article>`;
-  $('entrySelect').onchange=e=>entryPage=e.target.value;
-  $('view').onclick=()=>openPreview(entryPage);
-  $('remove').onclick=clearProject;
-}
-function countFiles(){const s=new Set(files.values());return s.size}
-function renderEmpty(){area.innerHTML=`<div class="empty"><div><strong>Nenhum projeto carregado</strong>Selecione uma pasta, arquivos ou ZIP para começar.</div></div>`;$('clearTop').disabled=true}
-function clearProject(){generation++;files.clear();entryPage='';root='';projectName='Meu projeto';renderEmpty();hideProgress();toast('Projeto removido.')}
-function showSystemLoading(title='Processando projeto',sub='O SiteView está preparando seus arquivos.'){const o=$('systemLoading');o.classList.add('show');o.setAttribute('aria-hidden','false');$('systemLoadingTitle').textContent=title;$('systemLoadingSub').textContent=sub;$('systemLoadingFill').style.width='4%';$('systemLoadingStage').textContent='Iniciando...'}
-function updateSystemLoading(pct,stage,sub){if(!$('systemLoading').classList.contains('show'))return;$('systemLoadingFill').style.width=Math.max(0,Math.min(100,pct))+'%';$('systemLoadingStage').textContent=stage||'';if(sub)$('systemLoadingSub').textContent=sub}
-async function hideSystemLoading(){const o=$('systemLoading');if(!o.classList.contains('show'))return;updateSystemLoading(100,'Concluído','Finalizando...');await sleep(220);o.classList.remove('show');o.setAttribute('aria-hidden','true')}
-async function importFiles(list,name=''){
-  if(busy)return;
-  busy=true;generation++;const id=generation;const started=performance.now();
-  try{
-    showSystemLoading('Processando projeto','O SiteView está lendo e organizando seus arquivos.');
-    setProgress(1,'Preparando projeto...','Analisando arquivos');
-    updateSystemLoading(8,'Analisando arquivos...','Verificando a estrutura recebida');
-    await frame();
-    const incoming=await normalizeInput(Array.from(list));
-    if(id!==generation)return;
-    updateSystemLoading(25,'Organizando arquivos...',`${incoming.length} arquivo(s) encontrado(s)`);
-    await processProgress(incoming,'Processando',id);
-    if(id!==generation)return;
-    updateSystemLoading(68,'Preparando recursos...','Montando a estrutura do projeto');
-    await addFiles(incoming,name);
-    updateSystemLoading(88,'Verificando projeto...','Procurando a página de entrada e recursos');
-    setProgress(100,'Projeto pronto','Pronto para visualizar');
-    updateSystemLoading(100,'Projeto pronto','Tudo preparado para visualização');
-    const minVisible=5200;
-    const remaining=minVisible-(performance.now()-started);
-    if(remaining>0)await sleep(remaining);
-    hideProgress();await hideSystemLoading();toast('Projeto carregado com sucesso.');
-  }catch(e){
-    console.error(e);hideProgress();await hideSystemLoading();
-    showError('Não foi possível carregar o projeto.',[{t:'Motivo',v:e.message||String(e)},{t:'Dica',v:'Confirme se o projeto contém uma página HTML e se o ZIP não está protegido por senha.'}]);
-  }finally{if(id===generation)busy=false}
-}
-$('browse').onclick=async()=>{if(busy)return;if('showDirectoryPicker'in window){try{const h=await showDirectoryPicker({mode:'read'});const arr=[];await collectDirectory(h,arr);await importFiles(arr,h.name);return}catch(e){if(e.name==='AbortError')return}}folderInput.value='';folderInput.click()};
-folderInput.onchange=()=>{if(folderInput.files.length)importFiles(folderInput.files)};
-$('fileBrowse').onclick=()=>{if(!busy){fileInput.value='';fileInput.click()}};
-fileInput.onchange=()=>{if(fileInput.files.length)importFiles(fileInput.files)};
-['dragenter','dragover'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();if(!busy)drop.classList.add('on')}));
-['dragleave','drop'].forEach(n=>drop.addEventListener(n,e=>{e.preventDefault();drop.classList.remove('on')}));
-drop.ondrop=async e=>{if(busy)return;const items=[...(e.dataTransfer?.items||[])],arr=[];try{for(const item of items){if(item.getAsFileSystemHandle){const h=await item.getAsFileSystemHandle();if(h?.kind==='directory')await collectDirectory(h,arr);else if(h?.kind==='file')arr.push(await h.getFile());continue}const en=item.webkitGetAsEntry?.();if(en)await collectEntry(en,arr);else{const f=item.getAsFile?.();if(f)arr.push(f)}}if(!arr.length)arr.push(...(e.dataTransfer?.files||[]));await importFiles(arr)}catch(err){console.error(err);showError('Não foi possível ler os itens arrastados.',[{t:'Motivo',v:err.message||String(err)}])}};
-
-async function dataUrl(file,path,text){
-  if(text!==undefined)return 'data:'+mime(file,path)+';charset=utf-8,'+encodeURIComponent(text);
-  const b=await file.arrayBuffer();let binary='';const u=new Uint8Array(b);const chunk=0x8000;for(let i=0;i<u.length;i+=chunk)binary+=String.fromCharCode(...u.subarray(i,i+chunk));return 'data:'+mime(file,path)+';base64,'+btoa(binary)
-}
-const textCache=new Map(), urlCache=new Map(), buildCache=new Map();
-async function textOf(path){path=clean(path);if(textCache.has(path))return textCache.get(path);const f=fileFor(path);if(!f)return null;const t=await f.text();textCache.set(path,t);return t}
-async function assetUrl(path){path=clean(path);if(urlCache.has(path))return urlCache.get(path);const f=fileFor(path);if(!f)return null;const p=dataUrl(f,path);urlCache.set(path,p);return p}
-
-function rewriteCssUrls(css,base,depth=0){
-  const urlRe=/url\(\s*(?:"([^"]*)"|'([^']*)'|([^)"']+))\s*\)/gi;let out='',last=0,m;
-  return (async()=>{while((m=urlRe.exec(css))){out+=css.slice(last,m.index);const original=m[1]??m[2]??m[3];if(external(original)){out+=m[0];last=urlRe.lastIndex;continue}const p=resolve(base,original.trim());const u=p?await assetUrl(p):null;out+=u?`url("${u}")`:m[0];last=urlRe.lastIndex}out+=css.slice(last);return out})();
-}
-async function buildCss(path,seen=new Set()){
-  path=clean(path);if(buildCache.has('css:'+path))return buildCache.get('css:'+path);if(seen.has(path))return '';seen.add(path);
-  const src=await textOf(path);if(src==null)return '';let css=src;
-  const imports=[];const re=/@import\s+(?:url\(\s*)?(["'])([^"']+\.css(?:[?#][^"']*)?)\1\s*\)?\s*;?/gi;let m;
-  while((m=re.exec(src))){const p=resolve(baseOf(path),m[2]);if(p&&fileFor(p)){imports.push([m[0],await buildCss(p,new Set(seen))])}}
-  for(const [a,b] of imports)css=css.split(a).join(b);
-  css=await rewriteCssUrls(css,baseOf(path));const out='data:text/css;charset=utf-8,'+encodeURIComponent(css);buildCache.set('css:'+path,out);return out;
-}
-
-async function injectRuntime(){
-  const map={};
-  for(const [p,f] of files){
-    if(!/\.(?:json|txt|csv|xml)$/i.test(p)||f.size>2*1024*1024)continue;
-    try{map[clean(p)]=await assetUrl(p)}catch{}
-  }
-  const json=JSON.stringify(map).replace(/<\\/g,'<\\\\/');
-  return `<script>(function(){try{window.__SITEVIEW_PREVIEW__=true;var A=${json};function r(v){try{v=String(v||'').trim();if(!v||/^(?:https?:|data:|blob:|#|mailto:|tel:|javascript:|about:|file:)/i.test(v)||v.indexOf('//')===0)return v;var u=new URL(v,location.href),p=u.pathname.replace(/^\\//,'');return A[p]||A[p.toLowerCase()]||v}catch(e){return v}}var of=window.fetch;if(of)window.fetch=function(i,o){if(typeof i==='string')i=r(i);else if(i&&i.url){var u=r(i.url);if(u!==i.url)i=new Request(u,i)}return of.call(this,i,o)};if(window.XMLHttpRequest){var oo=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(m,u){return oo.call(this,m,typeof u==='string'?r(u):u,...Array.prototype.slice.call(arguments,2))}}window.addEventListener('error',function(e){parent.postMessage({sv:'error',m:e.message||'Erro',s:e.filename||'',l:e.lineno||0},'*')});window.addEventListener('unhandledrejection',function(e){parent.postMessage({sv:'error',m:String(e.reason?.message||e.reason||'Promise rejeitada')},'*')});}catch(e){}})();<\/script>`;
-}
-
-async function rewriteJs(src,path,seen=new Set()){
-  let out=src;
-  // Static and dynamic relative module imports.
-  const patterns=[
-    /(\b(?:import|export)\s+(?:[^'";]*?\s+from\s*)?)(['"])([^'"]+)\2/g,
-    /(\bimport\s*\(\s*)(['"])([^'"]+)\2/g
-  ];
-  for(const re of patterns){
-    const matches=[...out.matchAll(re)];
-    for(const m of matches.reverse()){const ref=m[3];if(external(ref))continue;const p=resolve(baseOf(path),ref);if(!p||!fileFor(p))continue;const f=fileFor(p);const e=ext(p);let u;if(/\.css$/i.test(e))u=await buildCss(p);else if(/\.(?:js|mjs|cjs)$/i.test(e))u=await buildJs(p,seen);else u=await assetUrl(p);if(u)out=out.slice(0,m.index+m[1].length+m[2].length)+u+out.slice(m.index+m[1].length+m[2].length+m[3].length+m[2].length)}
-  }
-  return out
-}
-async function buildJs(path,seen=new Set()){path=clean(path);if(buildCache.has('js:'+path))return buildCache.get('js:'+path);if(seen.has(path))return '';seen.add(path);const src=await textOf(path);if(src==null)return '';const out=await rewriteJs(src,path,seen);buildCache.set('js:'+path,out);return out}
-
-async function processHtml(path,seen=new Set()){
-  path=clean(path);if(seen.has(path))return '';seen.add(path);let html=await textOf(path);if(html==null)throw new Error('Página não encontrada: '+path);const b=baseOf(path);
-  // CSS links become data URLs.
-  const links=[...html.matchAll(/<link\b([^>]*?)\bhref\s*=\s*(["'])(.*?)\2([^>]*)>/gi)];
-  for(const m of links.reverse()){const href=m[3];if(!/\.css(?:[?#].*)?$/i.test(href)||external(href))continue;const p=resolve(b,href);if(!p||!fileFor(p))continue;const u=await buildCss(p);html=html.slice(0,m.index)+`<link rel="stylesheet" href="${u}">`+html.slice(m.index+m[0].length)}
-  // Script src: inline normal scripts; module scripts use data URL.
-  const scripts=[...html.matchAll(/<script\b([^>]*?)\bsrc\s*=\s*(["'])(.*?)\2([^>]*)><\/script>/gi)];
-  for(const m of scripts.reverse()){const src=m[3];if(external(src))continue;const p=resolve(b,src);if(!p||!fileFor(p))continue;const code=await buildJs(p,new Set());const isModule=/\btype\s*=\s*["']module["']/i.test(m[1]+m[4]);if(isModule){const u='data:text/javascript;charset=utf-8,'+encodeURIComponent(code);html=html.slice(0,m.index)+`<script type="module" src="${u}"><\/script>`+html.slice(m.index+m[0].length)}else html=html.slice(0,m.index)+`<script>${code}<\/script>`+html.slice(m.index+m[0].length)}
-  // Local assets and internal HTML pages.
-  const attrs=[...html.matchAll(/\b(src|href|poster)\s*=\s*(["'])(.*?)\2/gi)];
-  for(const m of attrs.reverse()){const attr=m[1].toLowerCase(),v=m[3];if(external(v))continue;if(attr==='href'&&/^(?:javascript:|mailto:|tel:)/i.test(v))continue;if(attr==='href'&&/\.(?:html?|xhtml)(?:[?#].*)?$/i.test(v)){const p=resolve(b,v);if(p&&fileFor(p)){const page=await processHtml(p,new Set(seen));const u='data:text/html;charset=utf-8,'+encodeURIComponent(page);html=html.slice(0,m.index)+`${attr}="${u}"`+html.slice(m.index+m[0].length)}continue}const p=resolve(b,v);if(!p||!fileFor(p))continue;const u=await assetUrl(p);if(u)html=html.slice(0,m.index)+`${attr}="${u}"`+html.slice(m.index+m[0].length)}
-  // srcset.
-  const srcsets=[...html.matchAll(/\bsrcset\s*=\s*(["'])(.*?)\1/gi)];for(const m of srcsets.reverse()){const parts=m[2].split(',').map(x=>x.trim()).filter(Boolean);const conv=[];for(const item of parts){const bits=item.split(/\s+/),v=bits.shift();if(external(v)){conv.push(item);continue}const p=resolve(b,v),u=p?await assetUrl(p):null;conv.push(u?[u,...bits].join(' '):item)}html=html.slice(0,m.index)+`srcset="${conv.join(', ')}"`+html.slice(m.index+m[0].length)}
-  const runtime=await injectRuntime();if(/<head\b[^>]*>/i.test(html))html=html.replace(/<head\b[^>]*>/i,m=>m+runtime);else html=runtime+html;
-  return html
-}
-
-async function buildProject(path){
-  textCache.clear();urlCache.clear();buildCache.clear();
-  return await processHtml(path);
-}
-
-function showError(title,items){$('previewError').classList.remove('hide');$('previewLoading').classList.add('hide');$('errorText').textContent=title;$('diagnostic').innerHTML=(items||[]).map(x=>`<div class="diag"><b>${esc(x.t)}</b><br>${esc(x.v)}</div>`).join('')}
-function openPreviewScreen(){const p=$('preview');p.classList.add('show');p.setAttribute('aria-hidden','false');$('previewLoading').classList.remove('hide');$('previewError').classList.add('hide');$('frame').srcdoc=''}
-function closePreview(){const p=$('preview');p.classList.remove('show');p.setAttribute('aria-hidden','true');$('frame').srcdoc='';for(const u of previewObjectUrls)URL.revokeObjectURL(u);previewObjectUrls=[]}
-async function openPreview(path){if(busy)return;busy=true;openPreviewScreen();$('previewTitle').textContent=projectName+' — '+path;const started=performance.now();try{$('previewLoadingSub').textContent='Lendo HTML e recursos...';await frame();const html=await buildProject(path);if(!html.trim())throw new Error('A página HTML está vazia.');$('previewLoadingSub').textContent='Montando CSS, imagens e scripts...';await frame();const fr=$('frame');fr.srcdoc=html;await new Promise(res=>{let done=false;const finish=()=>{if(done)return;done=true;res()};fr.addEventListener('load',finish,{once:true});setTimeout(finish,4000)});const elapsed=performance.now()-started;if(elapsed<900)await sleep(900-elapsed);$('previewLoadingSub').textContent='Visualização pronta';await sleep(180);$('previewLoading').classList.add('hide')}catch(e){console.error(e);showError('O SiteView não conseguiu montar esta página.',[{t:'Motivo',v:e.message||String(e)},{t:'Possíveis causas',v:'Caminho local incorreto, script incompatível, recurso externo bloqueado ou projeto que depende de servidor/backend.'}])}finally{busy=false}}
-$('closePreview').onclick=closePreview;$('closeError').onclick=closePreview;$('retry').onclick=()=>openPreview(entryPage);
-window.addEventListener('message',e=>{if(e.source!==$('frame').contentWindow)return;const d=e.data||{};if(d.sv==='error'){showError('O projeto abriu, mas registrou um erro de JavaScript.',[{t:'Erro',v:d.m+(d.s?` — ${d.s}${d.l?':'+d.l:''}`:'')},{t:'Observação',v:'Erros de API, backend ou serviços externos podem ser esperados em projetos que não foram feitos para execução offline.'}])}});
-
-document.querySelectorAll('.device-btn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.device-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const mode=btn.dataset.device,body=$('previewBody');$('frame').style.width=mode==='mobile'?'390px':mode==='tablet'?'768px':'100%';$('frame').style.maxWidth='100%';$('frame').style.margin='0 auto';body.style.background=mode==='desktop'?'#171b25':'#0a0e16'});
-
-$('aboutBtn').onclick=()=>{$('aboutModal').classList.add('show');$('aboutModal').setAttribute('aria-hidden','false')};$('closeAbout').onclick=()=>{$('aboutModal').classList.remove('show');$('aboutModal').setAttribute('aria-hidden','true')};$('aboutModal').onclick=e=>{if(e.target.id==='aboutModal')$('closeAbout').click()};$('clearTop').onclick=clearProject;
-
-function isStandalone(){return window.matchMedia?.('(display-mode: standalone)').matches||window.navigator.standalone===true}
-function openInstallModal(){if(isStandalone())return;const m=$('installModal');const status=$('installStatus');const note=$('installNote');const confirm=$('confirmInstall');if(deferredInstallPrompt){status.innerHTML='<strong>Instalação disponível</strong><span>O navegador está pronto para instalar o SiteView como aplicativo.</span>';confirm.disabled=false;confirm.textContent='Instalar SiteView';note.textContent='Ao continuar, o navegador abrirá a confirmação de instalação.'}else{status.innerHTML='<strong>Instalação pelo navegador</strong><span>O navegador ainda não disponibilizou o botão automático de instalação nesta sessão.</span>';confirm.disabled=false;confirm.textContent='Como instalar';note.textContent='Se o botão automático não estiver disponível, use o menu do navegador e procure por “Instalar SiteView” ou “Adicionar à tela inicial”.'}m.classList.add('show');m.setAttribute('aria-hidden','false')}
-function closeInstallModal(){const m=$('installModal');m.classList.remove('show');m.setAttribute('aria-hidden','true')}
-async function installFromModal(){if(deferredInstallPrompt){const prompt=deferredInstallPrompt;deferredInstallPrompt=null;updateInstallButton();closeInstallModal();await prompt.prompt();try{const choice=await prompt.userChoice;if(choice?.outcome==='accepted')toast('SiteView instalado com sucesso.');else toast('Instalação cancelada.')}catch{toast('Não foi possível concluir a instalação.')}return}toast('Abra o menu do navegador para instalar ou adicionar o SiteView à tela inicial.');}
-function updateInstallButton(){if(isStandalone()){installBtn.hidden=true;return}installBtn.hidden=false;installBtn.classList.toggle('ready',!!deferredInstallPrompt);installBtn.title=deferredInstallPrompt?'Instalar SiteView':'Conheça a instalação do SiteView'}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;updateInstallButton();});
-window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;installBtn.hidden=true;closeInstallModal();toast('SiteView instalado com sucesso.')});
-installBtn.onclick=openInstallModal;
-$('confirmInstall').onclick=installFromModal;$('cancelInstall').onclick=closeInstallModal;$('closeInstall').onclick=closeInstallModal;$('installModal').onclick=e=>{if(e.target.id==='installModal')closeInstallModal();};
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('preview').classList.contains('show'))closePreview();else if($('installModal').classList.contains('show'))closeInstallModal();else if($('aboutModal').classList.contains('show'))$('closeAbout').click()}});
-
-async function startSystemLoading(){
-  updateInstallButton();
-  showSystemLoading('Iniciando SiteView','Preparando o ambiente de visualização.');
-  const stages=[[12,'Carregando interface...'],[34,'Verificando recursos...'],[57,'Preparando o visualizador...'],[79,'Configurando ambiente local...'],[100,'SiteView pronto']];
-  for(const [pct,text] of stages){updateSystemLoading(pct,text,pct<100?'O sistema está preparando os componentes.':'Tudo pronto para começar.');await sleep(560);await frame()}
-  await sleep(420);await hideSystemLoading();
-}
-
-if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-renderEmpty();
-updateInstallButton();
-window.addEventListener('load',()=>{startSystemLoading().catch(()=>{})},{once:true});
-</script>
 </body>
 </html>
